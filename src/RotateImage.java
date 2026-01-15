@@ -1,14 +1,24 @@
 import java.util.Scanner;
 
 public class RotateImage {
-    static void RotateMatrix90Clockwise(int[][] mat, int n) {
-        for (int i = 0; i < n; i++) {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[][] mat = new int[n][n];
+
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+                mat[i][j] = sc.nextInt();
+
+        // Transpose
+        for (int i = 0; i < n; i++)
             for (int j = i + 1; j < n; j++) {
                 int temp = mat[i][j];
                 mat[i][j] = mat[j][i];
                 mat[j][i] = temp;
             }
-        }
+
+        // Reverse each row
         for (int i = 0; i < n; i++) {
             int left = 0, right = n - 1;
             while (left < right) {
@@ -19,18 +29,8 @@ public class RotateImage {
                 right--;
             }
         }
-    }
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int[][] mat = new int[n][n];
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < n; j++)
-                mat[i][j] = sc.nextInt();
-
-        RotateMatrix90Clockwise(mat, n);
-
+        // Print matrix
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 System.out.print(mat[i][j]);
@@ -38,8 +38,6 @@ public class RotateImage {
             }
             System.out.println();
         }
-
         sc.close();
     }
 }
-
