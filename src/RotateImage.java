@@ -13,6 +13,7 @@ public class RotateImage {
             }
         }
 
+        // Transpose the matrix
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
                 int temp = mat[i][j];
@@ -21,6 +22,7 @@ public class RotateImage {
             }
         }
 
+        // Reverse each row
         for (int i = 0; i < n; i++) {
             int left = 0, right = n - 1;
             while (left < right) {
@@ -32,6 +34,7 @@ public class RotateImage {
             }
         }
 
+        // Print the rotated matrix
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 System.out.print(mat[i][j]);
