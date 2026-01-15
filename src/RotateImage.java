@@ -30,7 +30,7 @@ public class RotateImage {
             }
         }
 
-        // Print matrix
+        // Print
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 System.out.print(mat[i][j]);
