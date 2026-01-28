@@ -1,32 +1,45 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class RotateImage {
+
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+
+        int n = sc.nextInt();  // rows
+        int m = sc.nextInt();  // columns (same as n)
+
         int[][] mat = new int[n][n];
 
-        // Fill matrix with input, but we will ignore numbers and just increment
-        int counter = 1;
-        for (int i = 0; i < n; i++)
-            for (int j = 0; j < n; j++)
-                mat[i][j] = counter++;
-
-        // Rotate 90 degrees clockwise layer by layer
-        for (int layer = 0; layer < n / 2; layer++) {
-            int first = layer;
-            int last = n - 1 - layer;
-            for (int i = first; i < last; i++) {
-                int offset = i - first;
-                int top = mat[first][i];
-                mat[first][i] = mat[last - offset][first];
-                mat[last - offset][first] = mat[last][last - offset];
-                mat[last][last - offset] = mat[i][last];
-                mat[i][last] = top;
+        // Read matrix
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                mat[i][j] = sc.nextInt();
             }
         }
 
-        // Print matrix without trailing spaces
+        // Step 1: Transpose
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                int temp = mat[i][j];
+                mat[i][j] = mat[j][i];
+                mat[j][i] = temp;
+            }
+        }
+
+        // Step 2: Reverse each row
+        for (int i = 0; i < n; i++) {
+            int left = 0, right = n - 1;
+            while (left < right) {
+                int temp = mat[i][left];
+                mat[i][left] = mat[i][right];
+                mat[i][right] = temp;
+                left++;
+                right--;
+            }
+        }
+
+        // Print rotated matrix (NO trailing spaces)
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 System.out.print(mat[i][j]);
@@ -34,6 +47,7 @@ public class RotateImage {
             }
             System.out.println();
         }
+
         sc.close();
     }
 }
